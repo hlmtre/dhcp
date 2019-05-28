@@ -157,6 +157,14 @@ by Eric Young (eay@cryptsoft.com).
   attention.
   [Gitlab #33]
 
+- Modified dhclient to not discard config file leases that are
+  duplicates of server-provided leases and to retain such leases
+  after they have been used as the fallback active lease and
+  DHCP service has been restored.  This allows them to be used
+  more than once during the lifetime of a dhclient instance. 
+  This applies to DHCPv4 operation only.
+  [ISC-Bugs #9]
+
 		Changes since 4.4.0 (New Features)
 - none
 		Changes since 4.4.0 (Bug Fixes)
