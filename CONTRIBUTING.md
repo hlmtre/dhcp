@@ -79,7 +79,7 @@ as perceived by the ISC engineer, the issue and/or MR will be assigned to one of
 ## Merge Request (also known as sending your patch the right way)
 
 The first step in writing the patch or new feature should be to get the source code from our Git
-repository. The procedure is very easy and is [explained here](https://gitlab.isc.org/isc-projects/dhcp/wikis/gitlab-howto).
+repository. The procedure is very easy and is [explained here](https://gitlab.isc.org/isc-projects/dhcp/wikis/processes/gitlab-howto).
 While it is possible to provide a patch against the latest stable release, it makes the review
 process much easier if it is for latest code from the Git master branch.
 
