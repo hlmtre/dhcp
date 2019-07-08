@@ -34,21 +34,13 @@ want. It would be extremely helpful if you can attach any configuration files (d
 dhclient), along with a step-by-step procedure to carry out the test(s).  This will help us verify
 your changes as extend our own system tests.
 
-Building ISC DHCP code from the repository is slightly different than the release tarballs. One
-major difference is that it does not have BIND source bundled inside and those have to be
-downloaded separately. Fortunately, there's an easy to use script for that:
-
-```bash
-sh util/bind.sh v4_4
-./configure --with-atf
-make
-```
-
 Make sure you have ATF (Automated Test Framework) installed in your system. For more information
 about ATF, please refer to <dhcp source tree>/doc/devel/atf.dox.  Note, running "make devel" in this
 directory will generate the documentation. To run the unit-tests, simply run:
 
 ```bash
+./configure --with-atf
+make
 make check
 ```
 
