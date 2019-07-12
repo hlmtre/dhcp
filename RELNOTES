@@ -139,6 +139,10 @@ by Eric Young (eay@cryptsoft.com).
   Thanks to Brett Neumeier for bringing the matter to our attention.
   [ISC-Bugs #15,!10	git c138f38bd00ceca4e1e51a4db7542a15ef79babd]
 
+- Fixed potential memory leaks in parser error message generation
+  spotted by Coverity, CIDs: 1448191, 1448193, 1448194, 1448195
+  [Gitlab #30,!16   git TBD]
+
 		Changes since 4.4.0 (New Features)
 - none
 		Changes since 4.4.0 (Bug Fixes)

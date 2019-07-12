@@ -3578,6 +3578,11 @@ int parse_lease_declaration (struct lease **lp, struct parse *cfile)
 			    if (token != EQUAL) {
 				parse_warn (cfile,
 					    "expecting '=' in set statement.");
+				binding_value_dereference(&nv, MDL);
+				if (newbinding) {
+					dfree(binding->name, MDL);
+					dfree(binding, MDL);
+				}
 				goto badset;
 			    }
 			}
@@ -3585,6 +3590,10 @@ int parse_lease_declaration (struct lease **lp, struct parse *cfile)
 			if (!parse_binding_value(cfile, nv)) {
 				binding_value_dereference(&nv, MDL);
 				lease_dereference(&lease, MDL);
+				if (newbinding) {
+					dfree(binding->name, MDL);
+					dfree(binding, MDL);
+				}
 				return 0;
 			}
 
@@ -4762,6 +4771,7 @@ parse_ia_na_declaration(struct parse *cfile) {
 	if (token != LBRACE) {
 		parse_warn(cfile, "corrupt lease file; expecting left brace");
 		skip_to_semi(cfile);
+		ia_dereference(&ia, MDL);
 		return;
 	}
 
@@ -5209,6 +5219,7 @@ parse_ia_ta_declaration(struct parse *cfile) {
 	if (token != LBRACE) {
 		parse_warn(cfile, "corrupt lease file; expecting left brace");
 		skip_to_semi(cfile);
+		ia_dereference(&ia, MDL);
 		return;
 	}
 
@@ -5646,6 +5657,7 @@ parse_ia_pd_declaration(struct parse *cfile) {
 	if (token != LBRACE) {
 		parse_warn(cfile, "corrupt lease file; expecting left brace");
 		skip_to_semi(cfile);
+		ia_dereference(&ia, MDL);
 		return;
 	}
 
