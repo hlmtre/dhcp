@@ -141,7 +141,7 @@ by Eric Young (eay@cryptsoft.com).
 
 - Fixed potential memory leaks in parser error message generation
   spotted by Coverity, CIDs: 1448191, 1448193, 1448194, 1448195
-  [Gitlab #30,!16   git TBD]
+  [Gitlab #30,!16   git d73dd575a2353960568aed80d51e1e299137c982]
 
 		Changes since 4.4.0 (New Features)
 - none
