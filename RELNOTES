@@ -143,6 +143,10 @@ by Eric Young (eay@cryptsoft.com).
   spotted by Coverity, CIDs: 1448191, 1448193, 1448194, 1448195
   [Gitlab #30,!16   git d73dd575a2353960568aed80d51e1e299137c982]
 
+- Updated URL of IEEE oui.txt in contrib/dhcp-lease-list.pl. Thanks
+  to Tommy Smith for contributing the patch.
+  [Gitlab #26,!15   git c6c4db599aa5fb562e95e723cef00a3e30c3b14b]
+
 		Changes since 4.4.0 (New Features)
 - none
 		Changes since 4.4.0 (Bug Fixes)
