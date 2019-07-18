@@ -89,8 +89,8 @@ by Eric Young (eay@cryptsoft.com).
 
 		Changes since 4.4.1 (New Features)
 
-- Fixed define flags when using HAVE_SO_BINDTODEVICE and SO_BINDTODEVICE.
-  Thanks to Joe LeVeque for reporting the issue.
+- Fixed define flags when using SO_BINDTODEVICE. Thanks to Joe LeVeque for
+  reporting the issue.
   [ISC-Bugs #19,!14      git TBD]
 
 - A new configuration parameter, ping-cltt-secs (v4 operation only), has

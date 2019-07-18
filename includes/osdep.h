@@ -138,6 +138,10 @@
 #  define USE_UPF_RECEIVE
 #endif
 
+#if defined (SO_BINDTODEVICE) && !defined (HAVE_SO_BINDTODEVICE)
+# define HAVE_SO_BINDTODEVICE
+#endif
+
 /* Porting::
 
    If you add support for sending packets directly out an interface,
@@ -149,8 +153,7 @@
 #if defined (USE_BPF_SEND) || defined (USE_NIT_SEND) || \
     defined (USE_DLPI_SEND) || defined (USE_UPF_SEND) || \
     defined (USE_LPF_SEND) || \
-    (defined (USE_SOCKET_SEND) && (defined (HAVE_SO_BINDTODEVICE) || \
-    defined (SO_BINDTODEVICE)))
+    (defined (USE_SOCKET_SEND) && defined (HAVE_SO_BINDTODEVICE))
 #  define USE_SOCKET_FALLBACK
 #  define USE_FALLBACK
 #endif
@@ -262,10 +265,6 @@
 
 #if defined (ARPHRD_METRICOM) && !defined (HAVE_ARPHRD_METRICOM)
 # define HAVE_ARPHRD_METRICOM
-#endif
-
-#if defined (SO_BINDTODEVICE) && !defined (HAVE_SO_BINDTODEVICE)
-# define HAVE_SO_BINDTODEVICE
 #endif
 
 #if defined (AF_LINK) && !defined (HAVE_AF_LINK)
