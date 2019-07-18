@@ -151,6 +151,12 @@ by Eric Young (eay@cryptsoft.com).
   to Tommy Smith for contributing the patch.
   [Gitlab #26,!15   git c6c4db599aa5fb562e95e723cef00a3e30c3b14b]
 
+- Applied a patch from OpenBSD to always set the scope id of outbound
+  DHPCv6 packets.  Note this change only applies when compiling under
+  OpenBSD.  Thanks to Brad Smith at OpenBSD from bringing it to our
+  attention.
+  [Gitlab #33,!17   git TBD]
+
 		Changes since 4.4.0 (New Features)
 - none
 		Changes since 4.4.0 (Bug Fixes)
