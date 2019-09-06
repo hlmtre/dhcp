@@ -91,7 +91,7 @@ by Eric Young (eay@cryptsoft.com).
 
 - Fixed define flags when using SO_BINDTODEVICE. Thanks to Joe LeVeque for
   reporting the issue.
-  [ISC-Bugs #19,!14      git TBD]
+  [ISC-Bugs #19,!14      git b402cd22b030c4bcfbba19d1f67dde599fdc1703]
 
 - A new configuration parameter, ping-cltt-secs (v4 operation only), has
   been added to allow the user to specify the number of seconds that must
