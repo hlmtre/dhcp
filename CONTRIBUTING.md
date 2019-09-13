@@ -5,7 +5,7 @@ This page will explain how to contribute your changes smoothly.
 
 We do not require a contributors agreement. By submitting a patch or merge request to this project, 
 you are agreeing that your code will be covered by the primary license for the project. 
-ISC DHCP is currently licenses under the MPL2.0 license. 
+ISC DHCP is currently licensed under the MPL2.0 license. 
 
 Here's are the steps in contributing a patch:
 
