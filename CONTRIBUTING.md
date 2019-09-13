@@ -7,7 +7,7 @@ We do not require a contributors agreement. By submitting a patch or merge reque
 you are agreeing that your code will be covered by the primary license for the project. 
 ISC DHCP is currently licenses under the MPL2.0 license. 
 
-Here's a quick list steps in contributing a patch:
+Here's are the steps in contributing a patch:
 
 1. **create account** on [gitlab](https://gitlab.isc.org)
 2. **open an issue** in [this project](https://gitlab.isc.org/isc-projects/dhcp/issues/new), make sure
