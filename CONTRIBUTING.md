@@ -3,7 +3,11 @@
 So you found a bug in ISC DHCP or plan to develop an extension and want to send us a patch? Great!
 This page will explain how to contribute your changes smoothly.
 
-Here's a quick list of how to contribute a patch:
+We do not require a contributors agreement. By submitting a patch or merge request to this project, 
+you are agreeing that your code will be covered by the primary license for the project. 
+ISC DHCP is currently licenses under the MPL2.0 license. 
+
+Here's a quick list steps in contributing a patch:
 
 1. **create account** on [gitlab](https://gitlab.isc.org)
 2. **open an issue** in [this project](https://gitlab.isc.org/isc-projects/dhcp/issues/new), make sure
@@ -70,8 +74,10 @@ are restricted so you cannot accidentally alter the master branch.
 
 Please read the [Gitlab How-To](https://gitlab.isc.org/isc-projects/dhcp/wikis/processes/gitlab-howto) for ISC DHCP.
 
+
 ## Implement your change
 
+This is where I would include a reference to coding standards, if there is any documentation.
 
 
 ## Compile your code
@@ -85,7 +91,7 @@ we build on, you may take a look at the [Jenkins build farm report](https://jenk
 ## Run unit-tests
 
 One of the ground rules in all ISC projects is that every piece of code has to be tested. For newer
-projects, such as Kea, we require unit-test for almost every line of code. For older code, such as
+projects, we require a unit-test for almost every line of code. For older code, such as
 ISC DHCP, that was not developed with testability in mind, it's unfortunately impractical to require
 extensive unit-tests. Having said that, please think thoroughly if there is any way to develop
 unit-tests. The long term goal is to improve the situation.
@@ -119,7 +125,6 @@ can be obtained with the command:
 ./configure --help
 ```
 
-
 ## Create a Merge Request 
 
 Once you feel that your patch is ready, go to the DHCP project
@@ -132,7 +137,7 @@ will help you out.
 Once you submit it, someone from the DHCP development team will look at it and will get back to you.
 The dev team is very small, so it may take a while...
 
-## If you really can't do MR on gitlab...
+## If you really can't do a merge request on ISC's Gitlab...
 
 Well, you are out of luck. There are other ways, but those are really awkward and the chances of
 your patch being ignored are really high. Anyway, here they are:
@@ -152,23 +157,23 @@ your patch being ignored are really high. Anyway, here they are:
 
 ## Going through a review
 
-Once the MR is in the system, the action is on one of the ISC (and possibly other trusted) engineers.
+Once the merge request (MR) is in the system, the action is on one of the core developers.
 
-Sooner or later, one of ISC engineers will do the review. Here's the tricky part. One of ISC DHCP
-developers will review your patch, but it may not happen immediately. Unfortunately, developers
-are usually working under a tight schedule, so any extra unplanned review work may take a while
-sometimes. Having said that, we value external contributions very much and will do whatever we
-can to review patches in a timely manner. Don't get discouraged if your patch is not accepted
-after first review. To keep the code quality high, we use the same review processes for external
-patches as we do for internal code. It may take some cycles of review/updated patch submissions
-before the code is finally accepted. The nature of the review process is that it emphasizes areas
-that need improvement. If you are not used to the review process, you may get the impression that
-the feedback is negative. It is not: even the ISC developers seldom see reviews that say "All OK
-please merge".
+Sooner or later, one of these engineers will do the review. Unfortunately, we have a small team
+and we have a lot of users to support, so it may take a while for us to get to your patch. 
+Having said that, we value external contributions very much and will do whatever we
+can to review patches in a timely manner. 
+
+Don't get discouraged if your patch is not accepted on the first review. To keep the code 
+quality high, we use the same review processes for external patches as we do for internal code. 
+It may take some cycles of review/updated patch submissions before the code is finally accepted. 
+The nature of the review process is that it emphasizes areas that need improvement. If you are 
+not used to the review process, you may get the impression that the feedback is negative. It 
+is not: even the core developers seldom see reviews that say "All OK please merge".
 
 If we happen to have any comments that you as submitter are expected to address (and in the
-overwhelming majority of cases, we have), you will be asked to update your MR. It is not
-uncommon to see several rounds of such reviews, so this can get very complicated very quickly.
+overwhelming majority of cases, we have), you will be asked to update your MR. It is common 
+to see several rounds of such reviews.
 
 Once the process is almost complete, the developer will likely ask you how you would like to be
 credited. The typical answers are by first and last name, by nickname, by company name or
@@ -179,11 +184,11 @@ notes.
 
 Sadly, we sometimes see patches that are submitted and then the submitter never responds to our
 comments or requests for an updated patch. Depending on the nature of the patch, we may either fix
-the outstanding issues on our own and get another ISC engineer to review them or the ticket may end
+the outstanding issues on our own and get another engineer to review them or the ticket may end
 up in our Outstanding milestone. When a new release is started, we go through the tickets in
 Outstanding, select a small number of them and move them to whatever the current milestone is. Keep
 that in mind if you plan to submit a patch and forget about it. We may accept it eventually, but
-it's much, much faster process if you participate in it.
+it's a much, much faster process if you participate in it.
 
 ## Extra steps
 
