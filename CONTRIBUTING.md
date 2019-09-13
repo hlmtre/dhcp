@@ -3,25 +3,86 @@
 So you found a bug in ISC DHCP or plan to develop an extension and want to send us a patch? Great!
 This page will explain how to contribute your changes smoothly.
 
-## Writing a patch
+Here's a quick list of how to contribute a patch:
+
+1. **create account** on [gitlab](https://gitlab.isc.org)
+2. **open an issue** in [this project](https://gitlab.isc.org/isc-projects/dhcp/issues/new), make sure
+   it describes what you want to fix and **why**. ISC DHCP is very mature code, with a large installed base. 
+   We are fairly conservative about making changes unless there is a very good reason.
+3. **ask someone from the ISC team to give you a 'project allocation' so you can to fork ISC DHCP in our repo** (ask on the issue - mention @tomek, @vicky, @ondrej
+   or @godfryd if it seems we haven't noticed your request)
+4. **fork the DHCP master branch**: go to the DHCP project page, click the [Fork button](https://gitlab.isc.org/isc-projects/dhcp/forks/new).
+   If you can't, you didn't complete step 3. It helps to include the issue number and subject in the branch name. 
+5. **Implement your fix or feature, in your branch**. Make sure it compiles, has unit-tests,
+   is documented and does what it's supposed to do.
+6. **Open Merge Request**: go to the DHCP project [merge requests page](https://gitlab.isc.org/isc-projects/dhcp/merge_requests), and
+   click [New merge request](https://gitlab.isc.org/isc-projects/dhcp/merge_requests/new). If you
+   don't see the button, you didn't complete step 3.
+7. **Participate in the code review**: Once you submit the MR, someone from ISC will eventually get
+   to the issue and will review your code. Please make sure you respond to comments. It's likely
+   you'll be asked to update the code.
+
+See the text below for more details.
+
+
+## Create an issue
+
+The first step in contributing to ISC DHCP is to [create an issue](https://gitlab.isc.org/isc-projects/dhcp/issues/new), describing the problem, deficiency
+or missing feature you want to address.  It is important to make it very clear why the specific change 
+you are proposing should be made. ISC DHCP is very mature code, with a large and somewhat inert installed base.
+We are very cautious about introducing changes that could break existing functionalty.  If you want to fix
+multiple problems, or make multiple changes, please make separate issues for each. 
+
+## Plan your changes
 
 Before you start working on a patch or a new feature, it is a good idea to discuss it first with
-DHCP developers. You can post your questions to the [dhcp-workers](https://lists.isc.org/mailman/listinfo/dhcp-workers)
-or [dhcp-users](https://lists.isc.org/mailman/listinfo/dhcp-users) mailing lists. The dhcp-users is
-intended for users who are not interested in the internal workings or development details: it is
-OK to ask for feedback regarding new design or the best proposed solution to a certain problem.
-This is the best place to get user's feedback. The internal details, questions about the code and
-its internals are better asked on dhcp-workers. The dhcp-workers is a very low traffic list.
+DHCP developers.  You may benefit from reading the [ISC DHCP Developer's Survival Guide](https://gitlab.isc.org/isc-projects/dhcp/wikis/home) 
+posted on the wiki page for this repo.
 
-OK, so you have written a patch? Great! Before you submit it, make sure that your code compiles.
-This may seem obvious, but there's more to it. You have surely checked that it compiles on your
-system, but ISC DHCP is a portable software. Besides Linux, it is compiled and used on relatively
-uncommon systems like OpenBSD. Will your code compile and work there? What about endianness? It is
-likely that you used a regular x86 architecture machine to write your patch, but the software is
-expected to run on many other architectures. For a complete list of systems we build on, you may
-take a look at the [Jenkins build farm report](https://jenkins.isc.org/view/isc-dhcp/).
+You can post questions about development on the [dhcp-workers](https://lists.isc.org/mailman/listinfo/dhcp-workers)
+or [dhcp-users](https://lists.isc.org/mailman/listinfo/dhcp-users) mailing lists. Dhcp-users is
+intended for users who are not interested in development details: it is appropriate to ask for 
+feedback regarding the best proposed solution to a certain problem. The internal details, 
+questions about the code and its internals are better asked  on dhcp-workers. The dhcp-workers 
+list is a very low traffic list.
 
-## Running unit-tests
+
+## Create a branch for your work
+
+These instructions assume you will be making your changes on a branch in the ISC DHCP Gitlab
+repository. This is by far the easiest way for us to collaborate with you.  While we also maintain a presence
+on [Github](https://github.com/isc-projects/dhcp), ISC developers rarely look at Github, which is 
+just a mirror of our Gitlab system.
+
+ISC's Gitlab has been a target for spammers, so it is set up defensively. New users need permission 
+from ISC to create new projects.  We gladly do this for anyone who asks and provides a good reason. 
+"I'd like to fix bug X or develop feature Y" is an excellent reason. To request a project
+allocation in ISC's Gitlab, just ask for it in a comment in your issue. Make sure
+you tag someone at ISC (@tomek, @godfryd, @vicky or @ondrej). When you write a comment in an issue or
+merge request and add a name tag on it, the user is automatically notified.
+
+Once you are given a 'project allocation' in our Gitlab, you can fork ISC DHCP and create a branch.
+This is your copy of ISC DHCP and is where you will make your changes. Go to the DHCP project page, 
+click the [Fork button](https://gitlab.isc.org/isc-projects/dhcp/forks/new) and you will be prompted
+to name your branch. It helps to include the issue number and subject in the branch name. You can make 
+changes to this branch without worrying that you will impact the master branch - commit priviliges 
+are restricted so you cannot accidentally alter the master branch. 
+
+Please read the [Gitlab How-To](https://gitlab.isc.org/isc-projects/dhcp/wikis/processes/gitlab-howto) for ISC DHCP.
+
+## Implement your change
+
+
+
+## Compile your code
+
+We don't yet have continuous integration set up for ISC DHCP, so you have to check the compilation manually.
+ISC DHCP is used on a wide array of UNIX and Linux operating systems. Will your code compile and work there? 
+What about endianness? It is likely that you used a regular x86 architecture machine to write your 
+patch, but the software is expected to run on many other architectures. For a complete list of systems 
+we build on, you may take a look at the [Jenkins build farm report](https://jenkins.isc.org/view/isc-dhcp/).
+
+## Run unit-tests
 
 One of the ground rules in all ISC projects is that every piece of code has to be tested. For newer
 projects, such as Kea, we require unit-test for almost every line of code. For older code, such as
@@ -58,32 +119,15 @@ can be obtained with the command:
 ./configure --help
 ```
 
-## Create an issue
 
-Since you want to change something in ISC DHCP, there's a problem, deficiency or a missing feature.
-Quite often it is not clear why specific change is being made. The best way to explain it is to
-[create an issue here](https://gitlab.isc.org/isc-projects/dhcp/issues/new). We prefer the original
-submitter fill them as he or she has the best understanding of the purpose of the change and may
-have any extra information, e.g. "this patch fixes compilation issue on FreeBSD 10.1". If there there
-is no MR and no gitlab issue, we will create one. Depending on the subjective importance and urgency
-as perceived by the ISC engineer, the issue and/or MR will be assigned to one of the milestones.
+## Create a Merge Request 
 
-## Merge Request (also known as sending your patch the right way)
-
-The first step in writing the patch or new feature should be to get the source code from our Git
-repository. The procedure is very easy and is [explained here](https://gitlab.isc.org/isc-projects/dhcp/wikis/processes/gitlab-howto).
-While it is possible to provide a patch against the latest stable release, it makes the review
-process much easier if it is for latest code from the Git master branch.
-
-Since you won't get write access to the ISC DHCP repository, you should fork it and then commit
-your changes to your own repo. How you organize the work depends entirely on you, but it seems
-reasonable to create a branch rather than working on your master.  Once you feel that your patch
-is ready, please commit your changes and push it to your copy of ISC DHCP repo. Then go to DHCP project
+Once you feel that your patch is ready, go to the DHCP project
 and [submit a Merge Request](https://gitlab.isc.org/isc-projects/dhcp/merge_requests/new).
 
-TODO: I don't think this is necessary. If you can't access this link or don't see New Merge Request
-button on the [merge requests page](https://gitlab.isc.org/isc-projects/dhcp/merge_requests)
-or the link gives you 404 error, please ask on dhcp-users and someone will help you out.
+If you can't access this link or don't see New Merge Request button on the [merge requests
+page](https://gitlab.isc.org/isc-projects/dhcp/merge_requests), please ask on dhcp-workers and someone
+will help you out.
 
 Once you submit it, someone from the DHCP development team will look at it and will get back to you.
 The dev team is very small, so it may take a while...
