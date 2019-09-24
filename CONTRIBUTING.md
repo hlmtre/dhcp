@@ -77,7 +77,7 @@ Please read the [Gitlab How-To](https://gitlab.isc.org/isc-projects/dhcp/wikis/p
 
 ## Implement your change
 
-This is where I would include a reference to coding standards, if there is any documentation.
+Please try to conform to the project's coding standards. ISC DHCP uses the same [coding standards](https://gitlab.isc.org/isc-projects/bind9/blob/master/doc/dev/style.md) as the BIND 9 project. https://gitlab.isc.org/isc-projects/bind9/blob/master/doc/dev/style.md
 
 
 ## Compile your code
@@ -85,8 +85,7 @@ This is where I would include a reference to coding standards, if there is any d
 We don't yet have continuous integration set up for ISC DHCP, so you have to check the compilation manually.
 ISC DHCP is used on a wide array of UNIX and Linux operating systems. Will your code compile and work there? 
 What about endianness? It is likely that you used a regular x86 architecture machine to write your 
-patch, but the software is expected to run on many other architectures. For a complete list of systems 
-we build on, you may take a look at the [Jenkins build farm report](https://jenkins.isc.org/view/isc-dhcp/).
+patch, but the software is expected to run on many other architectures. .
 
 ## Run unit-tests
 
@@ -190,12 +189,4 @@ Outstanding, select a small number of them and move them to whatever the current
 that in mind if you plan to submit a patch and forget about it. We may accept it eventually, but
 it's a much, much faster process if you participate in it.
 
-## Extra steps
-
-If you are interested in knowing the results of more in-depth testing, you are welcome to visit the
-ISC Jenkins page: https://jenkins.isc.org This is a live result page with all tests being run on
-various systems. Besides basic unit-tests, we also have reports from valgrind (memory debugger),
-cppcheck and clang-analyzer (static code analyzers), Lettuce system tests and more. Although it
-is not possible for non ISC employees to run tests on that farm, it is possible that your
-contributed patch will end up there sooner or later. We also have ISC Forge tests running and other
-additional tests, but currently those test results are not publicly available.
+#### Thank you for contributing your time and expertise to the ISC DHCP Project.
