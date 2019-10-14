@@ -2535,7 +2535,7 @@ void add_to_tail(struct client_lease** lease_list,
 
 	/* Find the tail */
 	struct client_lease* tail;
-	for (tail = *lease_list; tail && tail->next; tail = tail->next);
+	for (tail = *lease_list; tail && tail->next; tail = tail->next){};
 
 	/* Ensure the tail points nowhere. */
 	lease->next = NULL;
