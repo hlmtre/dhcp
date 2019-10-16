@@ -2,6 +2,7 @@
 *.o
 doc/html
 .deps
+*.swp
 Makefile
 autom4te.cache
 client/dhclient

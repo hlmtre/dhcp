@@ -2933,6 +2933,45 @@ int parse_zone (struct dns_zone *zone, struct parse *cfile)
 			    return (0);
 		    break;
 		    
+		  case DNSUPDATE_PORT:
+		    if (zone->port) {
+			    log_fatal("Multiple ports defined for zone %s",
+				     zone->name);
+		    }
+		    // skip ahead to AFTER the space after the string 'dnsupdate-port'
+		    do {
+			    skip_token(&val, NULL, cfile);
+		    } while (!strcmp(val, " "));
+		    /*
+		     now we're at the port number section - dnsupdate-port 5300;
+		     							   ^ here
+		    */
+		    char f[6] = "";
+		    int i = 0;
+		    while (peek_token(&val, NULL, cfile) != SEMI) {
+			    if (i > 5) {
+				    parse_warn(cfile, "malformed port.");
+				    return (0);
+			    }
+			    token = next_token(&val, (unsigned *)0, cfile); // can't peek the token; have to consume it
+			    strcat(f, val);
+			    /*
+			    if (!isdigit(f)) {
+				    parse_warn(cfile, "malformed port.");
+				    return (0);
+			    }
+			    */
+			    i++;
+		    }
+		    if (strlen(f) < 1) {
+			    parse_warn(cfile, "malformed port.");
+			    return (0);
+		    }
+     		    zone->port = atoi(f);
+		    if (!parse_semi(cfile))
+			    return (0);
+		    break;
+		    
 		  default:
 		    done = 1;
 		    break;

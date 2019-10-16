@@ -954,6 +954,9 @@ intern(char *atom, enum dhcp_token dfv) {
 			if (!atom [6])
 				return DEFINE;
 		}
+		if (!strcasecmp (atom + 1, "nsupdate-port")) {
+			return DNSUPDATE_PORT;
+		}
 		break;
 	      case 'e':
 		if (isascii (atom [1]) && 

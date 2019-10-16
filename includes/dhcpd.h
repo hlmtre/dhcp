@@ -1508,6 +1508,7 @@ struct dns_zone {
 	int refcnt;
 	TIME timeout;
 	char *name;
+	int port;
 	struct option_cache *primary;
 	struct option_cache *secondary;
 	struct option_cache *primary6;

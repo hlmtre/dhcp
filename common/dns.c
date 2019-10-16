@@ -1250,6 +1250,9 @@ find_cached_zone(dhcp_ddns_cb_t *ddns_cb, int direction)
 		dns_zone_dereference(&zone, MDL);
 		return (ISC_R_NOSPACE);
 	}
+	if (!zone->port) {
+		zone->port = NS_DEFAULTPORT;
+	}
 	strcpy((char *)&ddns_cb->zone_name[0], zone->name);
 
 	memset (&nsaddrs, 0, sizeof nsaddrs);
@@ -1266,7 +1269,7 @@ find_cached_zone(dhcp_ddns_cb_t *ddns_cb, int direction)
 				memcpy(&zone_addr, &nsaddrs.data[ip], 4);
 				isc_sockaddr_fromin(&ddns_cb->zone_addrs[ix],
 						    &zone_addr,
-						    NS_DEFAULTPORT);
+						    zone->port);
 				ISC_LIST_APPEND(ddns_cb->zone_server_list,
 						&ddns_cb->zone_addrs[ix],
 						link);
@@ -1288,7 +1291,7 @@ find_cached_zone(dhcp_ddns_cb_t *ddns_cb, int direction)
 				memcpy(&zone_addr6, &nsaddrs.data[ip], 16);
 				isc_sockaddr_fromin6(&ddns_cb->zone_addrs[ix],
 						    &zone_addr6,
-						    NS_DEFAULTPORT);
+						    zone->port);
 				ISC_LIST_APPEND(ddns_cb->zone_server_list,
 						&ddns_cb->zone_addrs[ix],
 						link);
@@ -1310,7 +1313,7 @@ find_cached_zone(dhcp_ddns_cb_t *ddns_cb, int direction)
 				memcpy(&zone_addr, &nsaddrs.data[ip], 4);
 				isc_sockaddr_fromin(&ddns_cb->zone_addrs[ix],
 						    &zone_addr,
-						    NS_DEFAULTPORT);
+						    zone->port);
 				ISC_LIST_APPEND(ddns_cb->zone_server_list,
 						&ddns_cb->zone_addrs[ix],
 						link);
@@ -1332,7 +1335,7 @@ find_cached_zone(dhcp_ddns_cb_t *ddns_cb, int direction)
 				memcpy(&zone_addr6, &nsaddrs.data[ip], 16);
 				isc_sockaddr_fromin6(&ddns_cb->zone_addrs[ix],
 						    &zone_addr6,
-						    NS_DEFAULTPORT);
+						    zone->port);
 				ISC_LIST_APPEND(ddns_cb->zone_server_list,
 						&ddns_cb->zone_addrs[ix],
 						link);
