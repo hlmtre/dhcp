@@ -775,8 +775,11 @@ int parse_statement (cfile, group, type, host_decl, declaration)
 			et = (struct executable_statement *)0;
 			if (!parse_option_statement
 				(&et, cfile, 1, option,
-				 supersede_option_statement))
+				 supersede_option_statement)) {
+				option_dereference(&option, MDL);
 				return declaration;
+			}
+
 			option_dereference(&option, MDL);
 			goto insert_statement;
 		} else
@@ -2048,12 +2051,15 @@ void parse_host_declaration (cfile, group)
 			unsigned len;
 
 			skip_token(&val, (unsigned *)0, cfile);
-			data_string_forget (&host -> client_identifier, MDL);
-
 			if (host->client_identifier.len != 0) {
-				parse_warn(cfile, "Host %s already has a "
-						  "client identifier.",
-					   host->name);
+				char buf[256];
+				print_hex_or_string(host->client_identifier.len,
+						   host->client_identifier.data,
+						   sizeof(buf) - 1, buf);
+				parse_warn(cfile,
+					   "Host '%s' already has a uid '%s'",
+					   host->name, buf);
+				skip_to_rbrace(cfile, 1);
 				break;
 			}
 
@@ -2795,6 +2801,7 @@ void parse_subnet_declaration (cfile, share)
 	if (token != NETMASK) {
 		parse_warn (cfile, "Expecting netmask");
 		skip_to_semi (cfile);
+		subnet_dereference (&subnet, MDL);
 		return;
 	}
 
@@ -2898,6 +2905,7 @@ parse_subnet6_declaration(struct parse *cfile, struct shared_network *share) {
 	token = next_token(&val, NULL, cfile);
 	if (token != SLASH) {
 		parse_warn(cfile, "Expecting a '/'.");
+		subnet_dereference(&subnet, MDL);
 		skip_to_semi(cfile);
 		return;
 	}
@@ -2905,6 +2913,7 @@ parse_subnet6_declaration(struct parse *cfile, struct shared_network *share) {
 	token = next_token(&val, NULL, cfile);
 	if (token != NUMBER) {
 		parse_warn(cfile, "Expecting a number.");
+		subnet_dereference(&subnet, MDL);
 		skip_to_semi(cfile);
 		return;
 	}
@@ -2914,12 +2923,14 @@ parse_subnet6_declaration(struct parse *cfile, struct shared_network *share) {
 	    (subnet->prefix_len > 128) || 
 	    (*endp != '\0')) {
 	    	parse_warn(cfile, "Expecting a number between 0 and 128.");
+		subnet_dereference(&subnet, MDL);
 		skip_to_semi(cfile);
 		return;
 	}
 
 	if (!is_cidr_mask_valid(&subnet->net, subnet->prefix_len)) {
 		parse_warn(cfile, "New subnet mask too short.");
+		subnet_dereference(&subnet, MDL);
 		skip_to_semi(cfile);
 		return;
 	}

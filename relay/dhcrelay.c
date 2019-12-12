@@ -142,7 +142,7 @@ static int strip_relay_agent_options(struct interface_info *,
 static void request_v4_interface(const char* name, int flags);
 
 static const char copyright[] =
-"Copyright 2004-2018 Internet Systems Consortium.";
+"Copyright 2004-2019 Internet Systems Consortium.";
 static const char arr[] = "All rights reserved.";
 static const char message[] =
 "Internet Systems Consortium DHCP Relay Agent";
@@ -1869,7 +1869,7 @@ process_down6(struct packet *packet) {
 				   &global_scope, oc, MDL) ||
 	    (relay_msg.len < offsetof(struct dhcpv6_packet, options))) {
 		log_error("Can't evaluate relay-msg.");
-		return;
+		goto cleanup;
 	}
 	msg = (const struct dhcpv6_packet *) relay_msg.data;
 
@@ -2075,6 +2075,9 @@ dhcp_set_control_state(control_object_state_t oldstate,
 
 	if (newstate != server_shutdown)
 		return ISC_R_SUCCESS;
+
+	/* Log shutdown on signal. */
+	log_info("Received signal %d, initiating shutdown.", shutdown_signal);
 
 	if (no_pid_file == ISC_FALSE)
 		(void) unlink(path_dhcrelay_pid);

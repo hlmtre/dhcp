@@ -187,7 +187,6 @@ am__define_uniq_tagged_files = \
 ETAGS = etags
 CTAGS = ctags
 CSCOPE = cscope
-DIST_SUBDIRS = $(SUBDIRS)
 am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/doc/devel/doxyfile.in README compile \
 	config.guess config.sub depcomp install-sh missing
@@ -390,6 +389,7 @@ EXTRA_DIST = RELNOTES LICENSE configure.ac+lt config+lt \
 # Use an autoconf substitution vs an automake conditional here
 # to fool automake when the bind directory does not exist.
 SUBDIRS = @BINDSUBDIR@ includes tests common omapip client dhcpctl relay server
+DIST_SUBDIRS = $(SUBDIRS) keama
 nobase_include_HEADERS = dhcpctl/dhcpctl.h
 
 #
