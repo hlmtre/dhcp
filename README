@@ -1,4 +1,6 @@
-	      Internet Systems Consortium DHCP Distribution
+**This is a fork of ISC's DHCP server including support for ddns updates to a non-standard port.**
+
+Internet Systems Consortium DHCP Distribution
 			     Version 4.4.2b1
 			    12 December 2019
 
